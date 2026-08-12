@@ -63,6 +63,17 @@ gates:
                 digest: sha256:40b93a15023e830b0ff138691d8a5481cb57b3740a260d055182c4e69dfe2809
                 request-digest: sha256:7980d32377ea87f5e1612aec27fa23d75cd754c1c654de4da805fb32b38bdc1b
                 room-ref: ./win64-cross-compilation/review/validation/briefing-1
+              resolution:
+                type: Resolution
+                id: resolution:spacedock:7s59y5jy5phhsdbcaf4knh13:validation:1
+                briefing: briefing:7s59y5jy5phhsdbcaf4knh13:validation:attempt-1:revision-1
+                by: person:captain
+                at: "2026-08-12T16:34:49.080538033Z"
+                decision: approve
+                reason: 'Independent validation passed: PE32+ executable produced, all packages compile, zero code changes needed.'
+              application:
+                target-stage: done
+                state: pending
 ---
 
 ## Problem
