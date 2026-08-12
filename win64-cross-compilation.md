@@ -9,8 +9,8 @@ verdict:
 score: 0.95
 worktree: .worktrees/spacedock-ensign-win64-cross-compilation
 issue:
-pr:
-mod-block:
+pr: local-merge:manual
+mod-block: merge:pr-merge
 gates:
     version: 1
     records:
