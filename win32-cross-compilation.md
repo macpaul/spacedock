@@ -3,7 +3,7 @@ id: nvtfxc3an0mphhf4q2e9zkse
 title: Win32 cross-compilation (GOARCH=386)
 status: ideation
 source: commission seed
-started:
+started: 2026-08-12T16:21:00Z
 completed:
 verdict:
 score: 0.9
@@ -69,10 +69,36 @@ Verified by: `git diff --stat main HEAD` on the worktree branch shows no changes
 - Run `spacedock-win32.exe --version` on a 32-bit or 64-bit Windows machine, confirm version string prints.
 - Run `spacedock-win32.exe --help`, confirm usage text displays.
 
+## Proposed approach (refined after ideation)
+
+**pty dependency — RESOLVED: no change needed.** Codebase investigation confirms:
+- `internal/cli/host_launch_unix.go` (`//go:build unix`) contains signal handling and PTY logic.
+- `internal/cli/host_launch_other.go` (`//go:build !unix`) provides non-Unix no-op stubs for `forwardHostSignals` and `hostExitCode` covering `windows/386`.
+- `creack/pty` is restricted to `internal/cli/host_launch_pty_test.go` (`//go:build unix`).
+- `CGO_ENABLED=0` is sufficient; no MinGW cross-compiler needed.
+
+**Build targets added:** `Makefile` target `make build-windows-386` cross-compiles `dist/spacedock_windows_386.exe` cleanly.
+
 ## Out of scope
 
-- 64-bit Windows (GOARCH=amd64) — separate task.
+- 64-bit Windows (GOARCH=amd64) — separate task (completed).
 - GoReleaser pipeline changes — separate task.
 - Windows installer (`.msi`, Chocolatey, Winget) — not in scope for this workflow.
 - Cygwin compatibility — not tested; MinGW cross-compile only.
-- Windows CI lane — deferred; this PR does not add a CI workflow for Windows.
+- Windows CI lane — deferred.
+
+## Stage Report — ideation
+
+**FO investigation & live verification findings:**
+
+| AC | Command | Result |
+|---|---|---|
+| AC-1 | `make build-windows-386` (`GOOS=windows GOARCH=386 CGO_ENABLED=0 go build`) | **EXIT 0** ✅ |
+| AC-1 | `file dist/spacedock_windows_386.exe` | `PE32 executable for MS Windows 6.01 (console), Intel i386, 6 sections` ✅ |
+| AC-1 | `objdump -f dist/spacedock_windows_386.exe` | `file format pei-i386`, `architecture: i386` ✅ |
+| AC-2 | `make test-windows` (`GOOS=windows GOARCH=386 CGO_ENABLED=0 go build ./...`) | **EXIT 0** — all packages compile for `windows/386` ✅ |
+| AC-3 | `git diff --stat main HEAD` | 0 platform ifdefs leaked; covered by `Makefile` and existing `!unix` stubs ✅ |
+
+Binary: PE32 Intel i386 statically linked. Zero source modifications required.
+
+**Decision:** codebase is fully `windows/386` compatible. Implementation is reduced to capturing binary evidence. Recommend advance to implementation.
