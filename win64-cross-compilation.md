@@ -7,7 +7,7 @@ started: 2026-08-12T16:14:00Z
 completed:
 verdict:
 score: 0.95
-worktree:
+worktree: .worktrees/spacedock-ensign-win64-cross-compilation
 issue:
 pr:
 mod-block:
