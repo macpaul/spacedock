@@ -43,6 +43,17 @@ gates:
                 digest: sha256:115eace51d1365db9ba55bae07ec9dd6f804c0f7d855b246b80c33a94abfe857
                 request-digest: sha256:8409304e4c1f58247797afb39a692ae05d8d2ab9b8150467325b1b54c91e296f
                 room-ref: ./win32-cross-compilation/review/ideation/briefing-1
+              resolution:
+                type: Resolution
+                id: resolution:spacedock:nvtfxc3an0mphhf4q2e9zkse:ideation:1
+                briefing: briefing:nvtfxc3an0mphhf4q2e9zkse:ideation:attempt-1:revision-1
+                by: person:captain
+                at: "2026-08-12T18:21:50.008645787Z"
+                decision: approve
+                reason: 'Captain approved: live PE32 Intel i386 binary produced, all packages compile for windows/386 with CGO_ENABLED=0.'
+              application:
+                target-stage: implementation
+                state: pending
 ---
 
 ## Problem
