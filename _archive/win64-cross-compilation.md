@@ -1,16 +1,16 @@
 ---
 id: 7s59y5jy5phhsdbcaf4knh13
 title: Win64 cross-compilation (GOARCH=amd64)
-status: validation
+status: done
 source: commission seed
 started: 2026-08-12T16:14:00Z
-completed:
-verdict:
+completed: 2026-08-12T16:35:14Z
+verdict: PASSED
 score: 0.95
 worktree: .worktrees/spacedock-ensign-win64-cross-compilation
 issue:
 pr: local-merge:3d6edf0
-mod-block: merge:pr-merge
+mod-block:
 gates:
     version: 1
     records:
@@ -73,7 +73,8 @@ gates:
                 reason: 'Independent validation passed: PE32+ executable produced, all packages compile, zero code changes needed.'
               application:
                 target-stage: done
-                state: pending
+                state: consumed
+archived: 2026-08-12T16:35:14Z
 ---
 
 ## Problem
