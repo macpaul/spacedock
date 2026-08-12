@@ -54,6 +54,15 @@ gates:
               application:
                 target-stage: implementation
                 state: consumed
+        - id: gate:7s59y5jy5phhsdbcaf4knh13:validation
+          stage: validation
+          attempts:
+            - id: gate-attempt:7s59y5jy5phhsdbcaf4knh13-validation-1
+              briefing:
+                id: briefing:7s59y5jy5phhsdbcaf4knh13:validation:attempt-1:revision-1
+                digest: sha256:40b93a15023e830b0ff138691d8a5481cb57b3740a260d055182c4e69dfe2809
+                request-digest: sha256:7980d32377ea87f5e1612aec27fa23d75cd754c1c654de4da805fb32b38bdc1b
+                room-ref: ./win64-cross-compilation/review/validation/briefing-1
 ---
 
 ## Problem
