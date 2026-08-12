@@ -147,3 +147,29 @@ Verified by: `git diff --stat main HEAD` shows any `//go:build windows` addition
 | AC-3 | Windows machine run | **Deferred** to captain smoke test |
 
 Binary: 7.2 MB PE32+ statically linked. No MinGW, no CGO, no source edits required.
+
+## Stage Report: implementation
+
+- DONE: Cross-compile GOOS=windows GOARCH=amd64 CGO_ENABLED=0 go build -o /tmp/spacedock-win64.exe ./cmd/spacedock/ exits 0 and file /tmp/spacedock-win64.exe confirms PE32+ x86-64 executable.
+  Command exited 0; file returned `PE32+ executable for MS Windows 6.01 (console), x86-64, 16 sections` and objdump -f returned `architecture: i386:x86-64`. (AC-1 passed)
+- DONE: GOOS=windows GOARCH=amd64 CGO_ENABLED=0 go build ./... for windows/amd64 exits 0 (all packages compile without source changes).
+  Cross-compiled all packages for windows/amd64 with exit 0 and zero source code modifications required. (AC-2, AC-4 passed)
+- DONE: Stage report appended to /home/macpaul/spacedock.git/docs/windows-support/.spacedock-state/win64-cross-compilation.md records exact commands run, outputs, and which AC each output satisfies.
+  Recorded exact cross-compilation commands, exit status, file/objdump outputs, and AC mapping (AC-1, AC-2, AC-4 passed, AC-3 deferred).
+
+### Summary
+
+Cross-compiled `spacedock` binary for `GOOS=windows GOARCH=amd64` using `CGO_ENABLED=0 go build -o /tmp/spacedock-win64.exe ./cmd/spacedock/` which exited 0 and produced a 7.2 MB PE32+ x86-64 executable (verified via `file` and `objdump -f`, satisfying AC-1). All packages compiled cleanly for `windows/amd64` via `GOOS=windows GOARCH=amd64 CGO_ENABLED=0 go build ./...` (satisfying AC-2), and `git status` confirmed zero source code changes were required due to existing platform shims in `internal/cli/host_launch_other.go` (satisfying AC-4). Interactive binary execution verification (AC-3) is deferred to captain's physical Windows smoke test.
+
+### Execution Evidence
+
+| AC | Command | Exit Code | Output / Evidence |
+|---|---|---|---|
+| AC-1 | `GOOS=windows GOARCH=amd64 CGO_ENABLED=0 go build -o /tmp/spacedock-win64.exe ./cmd/spacedock/` | 0 | Binary `/tmp/spacedock-win64.exe` created successfully |
+| AC-1 | `file /tmp/spacedock-win64.exe` | 0 | `PE32+ executable for MS Windows 6.01 (console), x86-64, 16 sections` |
+| AC-1 | `objdump -f /tmp/spacedock-win64.exe` | 0 | `file format pei-x86-64`, `architecture: i386:x86-64` |
+| AC-2 | `GOOS=windows GOARCH=amd64 CGO_ENABLED=0 go build ./...` | 0 | All packages compiled without error for `windows/amd64` |
+| AC-2 | `GOOS=windows GOARCH=amd64 CGO_ENABLED=0 go test -exec true ./...` | 0 | All package test suites compiled cleanly for `windows/amd64` |
+| AC-4 | `git status` (in `.worktrees/spacedock-ensign-win64-cross-compilation`) | 0 | `nothing to commit, working tree clean` — 0 source edits needed |
+| AC-3 | `spacedock-win64.exe --version` on Windows host | N/A | Deferred to captain's Windows smoke test |
+
