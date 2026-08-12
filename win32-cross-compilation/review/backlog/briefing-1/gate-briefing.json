@@ -1,0 +1,15 @@
+{
+  "type": "Briefing",
+  "version": "1",
+  "id": "briefing:nvtfxc3an0mphhf4q2e9zkse:backlog:attempt-1:revision-1",
+  "question": "Should this task advance from backlog to ideation? Win32 cross-compilation target (GOARCH=386) builds PE32 Intel i386 executable with CGO_ENABLED=0.",
+  "artifacts": [
+    {
+      "id": "artifact:nvtfxc3an0mphhf4q2e9zkse:backlog:attempt-1:revision-1:item-1",
+      "uri": "git-root://state/8790adf5ea7cacc7976cca5b7e956df7bfff9bb4/gate-reviews/win32-backlog-review.md",
+      "rev": "sha256:bf0c9ba4188798e28d91d35397c6371c2fc420539fc3bcd79ad31f780114c6b4",
+      "mediaType": "text/markdown",
+      "summary": "Win32 cross-compile task: advance to ideation. Pure Go build, PE32 386 proof methodology defined."
+    }
+  ]
+}
