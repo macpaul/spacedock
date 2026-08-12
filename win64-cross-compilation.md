@@ -23,6 +23,17 @@ gates:
                 digest: sha256:8c482e4c321a961c5e9d273940f8c3c242cb015e43780b73d54cd7b7958c0108
                 request-digest: sha256:fd6a620bded35939d1ebade814dfbe6347debc0a90e9b916ce641688b69cf7af
                 room-ref: ./win64-cross-compilation/review/backlog/briefing-1
+              resolution:
+                type: Resolution
+                id: resolution:spacedock:7s59y5jy5phhsdbcaf4knh13:backlog:1
+                briefing: briefing:7s59y5jy5phhsdbcaf4knh13:backlog:attempt-1:revision-1
+                by: person:captain
+                at: "2026-08-12T16:13:10.673153376Z"
+                decision: approve
+                reason: 'Captain approved: advance to ideation. Pure Go cross-compile, bounded risk, offline proof methodology defined.'
+              application:
+                target-stage: ideation
+                state: pending
 ---
 
 ## Problem
