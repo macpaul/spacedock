@@ -146,3 +146,19 @@ Binary: PE32 Intel i386 statically linked. Zero source modifications required.
 
 Cross-compilation for Win32 (GOARCH=386) was verified in the dedicated worktree. All Go packages compile cleanly with CGO disabled, producing valid PE32 Intel i386 executables without requiring code changes or platform ifdef additions (AC-1 and AC-3 passed; AC-2 deferred).
 
+## Stage Report: validation
+
+- DONE: Independently reproduce `GOOS=windows GOARCH=386 CGO_ENABLED=0 go build -o /tmp/spacedock-win32-val.exe ./cmd/spacedock/` exits 0 and `file /tmp/spacedock-win32-val.exe` confirms PE32 Intel i386 executable.
+  Satisfies AC-1: `GOOS=windows GOARCH=386 CGO_ENABLED=0 go build` exited 0; `file` confirmed `PE32 executable for MS Windows 6.01 (console), Intel i386, 14 sections`; `objdump -f` confirmed `file format pei-i386`, `architecture: i386`.
+- DONE: Independently reproduce `make build-windows-386` and `make test-windows` exit 0 across all packages.
+  Satisfies AC-1 and AC-3: `make build-windows-386` produced `dist/spacedock_windows_386.exe` (exit 0); `make test-windows` verified compilation for `windows/amd64` and `windows/386` (exit 0).
+- DONE: Verify `git diff main HEAD` in the code worktree shows zero platform ifdef leaks (or only valid //go:build additions).
+  Satisfies AC-3: `git diff main HEAD` in worktree returned 0 diff lines; zero leaky platform ifdefs introduced.
+- SKIPPED: Run `spacedock.exe --version` on physical Windows machine.
+  AC-2 deferred to captain's physical Windows smoke test after merge.
+
+### Summary
+
+Independently verified Win32 cross-compilation (`GOARCH=386`) from scratch in the dedicated worktree. All compilation commands (`go build`, `make build-windows-386`, `make test-windows`, `go vet ./...`) exited 0, and inspection via `file` and `objdump -f` confirmed a valid PE32 Intel i386 executable. No platform ifdef leaks were found against `main`. Gate recommendation: PASSED (approve to done).
+
+
