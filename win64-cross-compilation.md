@@ -1,7 +1,7 @@
 ---
 id: 7s59y5jy5phhsdbcaf4knh13
 title: Win64 cross-compilation (GOARCH=amd64)
-status: backlog
+status: ideation
 source: commission seed
 started:
 completed:
@@ -33,7 +33,7 @@ gates:
                 reason: 'Captain approved: advance to ideation. Pure Go cross-compile, bounded risk, offline proof methodology defined.'
               application:
                 target-stage: ideation
-                state: pending
+                state: consumed
 ---
 
 ## Problem
