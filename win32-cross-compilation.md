@@ -34,6 +34,15 @@ gates:
               application:
                 target-stage: ideation
                 state: consumed
+        - id: gate:nvtfxc3an0mphhf4q2e9zkse:ideation
+          stage: ideation
+          attempts:
+            - id: gate-attempt:nvtfxc3an0mphhf4q2e9zkse-ideation-1
+              briefing:
+                id: briefing:nvtfxc3an0mphhf4q2e9zkse:ideation:attempt-1:revision-1
+                digest: sha256:115eace51d1365db9ba55bae07ec9dd6f804c0f7d855b246b80c33a94abfe857
+                request-digest: sha256:8409304e4c1f58247797afb39a692ae05d8d2ab9b8150467325b1b54c91e296f
+                room-ref: ./win32-cross-compilation/review/ideation/briefing-1
 ---
 
 ## Problem
