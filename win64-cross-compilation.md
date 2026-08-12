@@ -1,7 +1,7 @@
 ---
 id: 7s59y5jy5phhsdbcaf4knh13
 title: Win64 cross-compilation (GOARCH=amd64)
-status: ideation
+status: implementation
 source: commission seed
 started: 2026-08-12T16:14:00Z
 completed:
@@ -53,7 +53,7 @@ gates:
                 reason: 'Live proof: PE32+ binary produced, all packages compile for windows/amd64 with CGO_ENABLED=0, zero source changes needed.'
               application:
                 target-stage: implementation
-                state: pending
+                state: consumed
 ---
 
 ## Problem
