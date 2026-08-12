@@ -1,7 +1,7 @@
 ---
 id: nvtfxc3an0mphhf4q2e9zkse
 title: Win32 cross-compilation (GOARCH=386)
-status: implementation
+status: validation
 source: commission seed
 started: 2026-08-12T16:21:00Z
 completed:
