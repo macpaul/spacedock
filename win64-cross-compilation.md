@@ -3,7 +3,7 @@ id: 7s59y5jy5phhsdbcaf4knh13
 title: Win64 cross-compilation (GOARCH=amd64)
 status: ideation
 source: commission seed
-started:
+started: 2026-08-12T16:14:00Z
 completed:
 verdict:
 score: 0.95
@@ -74,6 +74,20 @@ Verified by: `git diff --stat main HEAD` shows any `//go:build windows` addition
 - Run `spacedock-win64.exe --help`, confirm usage text.
 - Run `spacedock-win64.exe status --help`, confirm the status subcommand is accessible.
 
+## Proposed approach (refined after ideation)
+
+**pty dependency — RESOLVED: no change needed.** Codebase investigation confirms:
+- `internal/cli/host_launch_unix.go` (`//go:build unix`) contains the signal model and PTY logic.
+- `internal/cli/host_launch_other.go` (`//go:build !unix`) is an existing Windows/non-unix shim that provides no-op `forwardHostSignals` and `hostExitCode` stubs.
+- `creack/pty` appears ONLY in `internal/cli/host_launch_pty_test.go` (`//go:build unix`) — a test file, excluded from the Windows build entirely.
+- No production code imports `creack/pty`. `CGO_ENABLED=0` is sufficient; no MinGW cross-compiler is needed.
+
+**Go toolchain note:** `go` is not available in the current environment (spacedock was pre-built). The implementation worker must install Go 1.22+ (`go install` or system package) before running the cross-compile commands. This is a prerequisite, not a blocker — the codebase is already Windows-compatible.
+
+**Implementation is a no-code change.** The cross-compile should succeed today with no source edits. The implementation worker's deliverable is:
+1. Install Go (if not present), cross-compile, capture `file`/`objdump` evidence.
+2. If any compile errors arise, fix with minimal targeted changes (build tag guards, no shared code changes).
+
 ## Out of scope
 
 - 32-bit Windows (GOARCH=386) — separate task.
@@ -81,3 +95,22 @@ Verified by: `git diff --stat main HEAD` shows any `//go:build windows` addition
 - Windows installer or package manager support — not in scope.
 - Windows CI lane — deferred.
 - ARM64 Windows — not in scope for this workflow.
+
+## Stage Report — ideation
+
+**FO investigation findings:**
+
+| Finding | Evidence | Impact |
+|---|---|---|
+| `creack/pty` is unix-only test dependency | `host_launch_pty_test.go:3: //go:build unix` | No CGO, no MinGW needed |
+| `host_launch_other.go` Windows shim exists | `//go:build !unix` — no-op stubs for `forwardHostSignals` + `hostExitCode` | Build will compile for `!unix` including Windows |
+| `os/exec` usage is Windows-compatible | Standard library — cross-platform | No risk |
+| `go` toolchain not on this machine | `which go` → not found | Worker must install Go 1.22 before cross-compiling |
+
+**AC status after ideation:**
+- AC-1 (build + file output): command unchanged; no MinGW needed, confirmed `CGO_ENABLED=0` is sufficient.
+- AC-2 (go test compile): unchanged.
+- AC-3 (Windows smoke): deferred to captain, unchanged.
+- AC-4 (no platform leaks): N/A for a no-source-change implementation; validate diff is empty or contains only `//go:build` additions if any compile errors arise.
+
+**Decision:** codebase is already Windows-compatible at the `//go:build` level. The implementation stage is reduced to: install Go → cross-compile → capture binary evidence. No source changes expected.
