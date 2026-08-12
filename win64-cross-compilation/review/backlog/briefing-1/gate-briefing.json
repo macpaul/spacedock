@@ -1,0 +1,15 @@
+{
+  "type": "Briefing",
+  "version": "1",
+  "id": "briefing:7s59y5jy5phhsdbcaf4knh13:backlog:attempt-1:revision-1",
+  "question": "Should this task advance from backlog to ideation? The task cross-compiles spacedock to windows/amd64 (PE32+), verified via Go cross-compile + file/objdump on Linux. The only risk is the creack/pty CGO dependency. Offline proof is sufficient; Windows smoke test is deferred.",
+  "artifacts": [
+    {
+      "id": "artifact:7s59y5jy5phhsdbcaf4knh13:backlog:attempt-1:revision-1:item-1",
+      "uri": "git-root://state/9025f3a65473c8a05c49bfed40b2431b284975b5/gate-reviews/win64-backlog-review.md",
+      "rev": "sha256:a05eb74bad3be15854baacbb72bca239b1a3ec7cdb27374bfc9bcb9cc425e481",
+      "mediaType": "text/markdown",
+      "summary": "Win64 cross-compile task: advance to ideation? Pure Go build, pty dependency needs audit, offline PE32+ proof defined."
+    }
+  ]
+}
