@@ -23,6 +23,17 @@ gates:
                 digest: sha256:c11b1e693e9fc041d721f050f937079bdceab525d6918333d3e4ee7ae0d3f836
                 request-digest: sha256:f07bbffffe385e32b2cd27c196f1d5b68c0bf2bade801d17c9aff4a7187f3efd
                 room-ref: ./win32-cross-compilation/review/backlog/briefing-1
+              resolution:
+                type: Resolution
+                id: resolution:spacedock:nvtfxc3an0mphhf4q2e9zkse:backlog:1
+                briefing: briefing:nvtfxc3an0mphhf4q2e9zkse:backlog:attempt-1:revision-1
+                by: person:captain
+                at: "2026-08-12T18:20:54.208834589Z"
+                decision: approve
+                reason: 'Captain approved: advance to ideation. Verified working Makefile target and PE32 Intel i386 binary.'
+              application:
+                target-stage: ideation
+                state: pending
 ---
 
 ## Problem
