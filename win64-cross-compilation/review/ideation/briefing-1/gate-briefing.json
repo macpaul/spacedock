@@ -1,0 +1,15 @@
+{
+  "type": "Briefing",
+  "version": "1",
+  "id": "briefing:7s59y5jy5phhsdbcaf4knh13:ideation:attempt-1:revision-1",
+  "question": "Approach confirmed: pure CGO_ENABLED=0 cross-compile, no source changes needed, pty dependency already guarded by !unix build tag. Should this advance to implementation?",
+  "artifacts": [
+    {
+      "id": "artifact:7s59y5jy5phhsdbcaf4knh13:ideation:attempt-1:revision-1:item-1",
+      "uri": "git-root://state/78c43a60a27ce2a4f1fd74a96614da8d15231339/gate-reviews/win64-ideation-review.md",
+      "rev": "sha256:a4babe10ac860aeebc4b5bbd854e7e0c88d31ef36657291e9a4f83c9b4bea48b",
+      "mediaType": "text/markdown",
+      "summary": "Win64 ideation gate: pty risk resolved, !unix shim confirmed, implementation is install-Go + cross-compile only."
+    }
+  ]
+}
