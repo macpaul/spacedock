@@ -1,7 +1,7 @@
 ---
 id: nvtfxc3an0mphhf4q2e9zkse
 title: Win32 cross-compilation (GOARCH=386)
-status: backlog
+status: ideation
 source: commission seed
 started:
 completed:
@@ -33,7 +33,7 @@ gates:
                 reason: 'Captain approved: advance to ideation. Verified working Makefile target and PE32 Intel i386 binary.'
               application:
                 target-stage: ideation
-                state: pending
+                state: consumed
 ---
 
 ## Problem
