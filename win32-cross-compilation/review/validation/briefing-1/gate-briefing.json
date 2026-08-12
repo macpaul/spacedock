@@ -1,0 +1,15 @@
+{
+  "type": "Briefing",
+  "version": "1",
+  "id": "briefing:nvtfxc3an0mphhf4q2e9zkse:validation:attempt-1:revision-1",
+  "question": "Validation passed: independent fresh agent confirmed PE32 Intel i386 executable produced, all packages compile for windows/386, zero source leaks. Approve to mark task done?",
+  "artifacts": [
+    {
+      "id": "artifact:nvtfxc3an0mphhf4q2e9zkse:validation:attempt-1:revision-1:item-1",
+      "uri": "git-root://state/56ca7dba1b9d09c6c74f81e077b18c8d2ee68fc2/gate-reviews/win32-validation-review.md",
+      "rev": "sha256:c7dfec09729879ea74537b18b3c726840532905c8c18af8ca5a33a0b2289d078",
+      "mediaType": "text/markdown",
+      "summary": "Win32 validation gate: all offline ACs independently verified PASSED. Recommend approve to done."
+    }
+  ]
+}
