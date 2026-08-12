@@ -122,3 +122,27 @@ Verified by: `git diff --stat main HEAD` on the worktree branch shows no changes
 Binary: PE32 Intel i386 statically linked. Zero source modifications required.
 
 **Decision:** codebase is fully `windows/386` compatible. Implementation is reduced to capturing binary evidence. Recommend advance to implementation.
+
+## Stage Report: implementation
+
+- DONE: Cross-compile `GOOS=windows GOARCH=386 CGO_ENABLED=0 go build -o /tmp/spacedock-win32.exe ./cmd/spacedock/` exits 0 and `file /tmp/spacedock-win32.exe` confirms PE32 Intel i386 executable.
+  Satisfies AC-1: Executed `GOOS=windows GOARCH=386 CGO_ENABLED=0 go build -o /tmp/spacedock-win32.exe ./cmd/spacedock/` (exit 0); `file /tmp/spacedock-win32.exe` output confirmed `PE32 executable for MS Windows 6.01 (console), Intel i386, 14 sections`; `objdump -f /tmp/spacedock-win32.exe` confirmed `file format pei-i386` and `architecture: i386`.
+- DONE: `make build-windows-386` and `make test-windows` exit 0 for windows/386.
+  Satisfies AC-1 and AC-3: `make build-windows-386` compiled `dist/spacedock_windows_386.exe` (exit 0); `make test-windows` compiled all packages for windows/amd64 and windows/386 (exit 0) with zero leaky ifdefs added.
+- SKIPPED: Run `spacedock.exe --version` on physical Windows machine.
+  AC-2 deferred to captain's physical Windows smoke test after merge.
+
+### Command Log & Acceptance Criteria Mapping
+
+| Command | Exit Code / Output | AC Satisfied |
+| --- | --- | --- |
+| `GOOS=windows GOARCH=386 CGO_ENABLED=0 go build -o /tmp/spacedock-win32.exe ./cmd/spacedock/` | 0 | AC-1 |
+| `file /tmp/spacedock-win32.exe` | `PE32 executable for MS Windows 6.01 (console), Intel i386, 14 sections` | AC-1 |
+| `objdump -f /tmp/spacedock-win32.exe` | `file format pei-i386`, `architecture: i386` | AC-1 |
+| `make build-windows-386` | 0 (`dist/spacedock_windows_386.exe` produced) | AC-1 |
+| `make test-windows` | 0 (`GOOS=windows GOARCH=386 CGO_ENABLED=0 go build ./...` passed) | AC-3 |
+
+### Summary
+
+Cross-compilation for Win32 (GOARCH=386) was verified in the dedicated worktree. All Go packages compile cleanly with CGO disabled, producing valid PE32 Intel i386 executables without requiring code changes or platform ifdef additions (AC-1 and AC-3 passed; AC-2 deferred).
+
