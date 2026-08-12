@@ -1,7 +1,7 @@
 ---
 id: nvtfxc3an0mphhf4q2e9zkse
 title: Win32 cross-compilation (GOARCH=386)
-status: ideation
+status: implementation
 source: commission seed
 started: 2026-08-12T16:21:00Z
 completed:
@@ -53,7 +53,7 @@ gates:
                 reason: 'Captain approved: live PE32 Intel i386 binary produced, all packages compile for windows/386 with CGO_ENABLED=0.'
               application:
                 target-stage: implementation
-                state: pending
+                state: consumed
 ---
 
 ## Problem
