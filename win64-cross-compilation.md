@@ -123,3 +123,16 @@ Verified by: `git diff --stat main HEAD` shows any `//go:build windows` addition
 - AC-4 (no platform leaks): N/A for a no-source-change implementation; validate diff is empty or contains only `//go:build` additions if any compile errors arise.
 
 **Decision:** codebase is already Windows-compatible at the `//go:build` level. The implementation stage is reduced to: install Go → cross-compile → capture binary evidence. No source changes expected.
+
+**Live verification (Go 1.26, run at ideation):**
+
+| AC | Command | Result |
+|---|---|---|
+| AC-1 | `GOOS=windows GOARCH=amd64 CGO_ENABLED=0 go build -o spacedock-win64.exe ./cmd/spacedock/` | **EXIT 0** ✅ |
+| AC-1 | `file spacedock-win64.exe` | `PE32+ executable for MS Windows 6.01 (console), x86-64, 16 sections` ✅ |
+| AC-1 | `objdump -f` | `architecture: i386:x86-64` ✅ |
+| AC-2 | `GOOS=windows GOARCH=amd64 CGO_ENABLED=0 go build ./...` | **EXIT 0** — all packages compile for Windows ✅ |
+| AC-4 | `git diff --stat` | No source changes made ✅ |
+| AC-3 | Windows machine run | **Deferred** to captain smoke test |
+
+Binary: 7.2 MB PE32+ statically linked. No MinGW, no CGO, no source edits required.
