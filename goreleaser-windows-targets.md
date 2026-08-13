@@ -11,6 +11,18 @@ worktree:
 issue:
 pr:
 mod-block:
+gates:
+    version: 1
+    records:
+        - id: gate:1xp4ea31vhdgp1r5vgxrvtwy:backlog
+          stage: backlog
+          attempts:
+            - id: gate-attempt:1xp4ea31vhdgp1r5vgxrvtwy-backlog-1
+              briefing:
+                id: briefing:1xp4ea31vhdgp1r5vgxrvtwy:backlog:attempt-1:revision-1
+                digest: sha256:b62533bb3cdbe117f5fd9ca5fdaef0c015f2fc196847fb1fc446c9b476f807c0
+                request-digest: sha256:cde6e54015c062071e928b50b8babf5ce8cda57836726dbaa745187fedb52f38
+                room-ref: ./goreleaser-windows-targets/review/backlog/briefing-1
 ---
 
 ## Problem

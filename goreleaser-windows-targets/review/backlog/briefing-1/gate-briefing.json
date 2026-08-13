@@ -1,0 +1,15 @@
+{
+  "type": "Briefing",
+  "version": "1",
+  "id": "briefing:1xp4ea31vhdgp1r5vgxrvtwy:backlog:attempt-1:revision-1",
+  "question": "Prerequisites met: both win32 and win64 cross-compilation tasks reached done. Advance GoReleaser Windows targets to ideation?",
+  "artifacts": [
+    {
+      "id": "artifact:1xp4ea31vhdgp1r5vgxrvtwy:backlog:attempt-1:revision-1:item-1",
+      "uri": "git-root://state/645076977ea0b1f5c5f666f6d2498e88e98cd9ef/gate-reviews/goreleaser-backlog-review.md",
+      "rev": "sha256:107e1e789e0497f632e1f20c0c91c024a553ad10124c834fa7cfb35e0253f149",
+      "mediaType": "text/markdown",
+      "summary": "GoReleaser task: unblocked by win32 + win64 completion. Recommend advance to ideation."
+    }
+  ]
+}
