@@ -63,6 +63,17 @@ gates:
                 digest: sha256:afe921871d8d8ab4f1145c96a93f1aa578ed6bdd89bb86d40553b13c78d3bec9
                 request-digest: sha256:7f18a0a952e0eff963664bdbd26161a9182f7dc15ea4fdad4f29e4605ad0def8
                 room-ref: ./win32-cross-compilation/review/validation/briefing-1
+              resolution:
+                type: Resolution
+                id: resolution:spacedock:nvtfxc3an0mphhf4q2e9zkse:validation:1
+                briefing: briefing:nvtfxc3an0mphhf4q2e9zkse:validation:attempt-1:revision-1
+                by: person:captain
+                at: "2026-08-13T01:10:37.623366367Z"
+                decision: approve
+                reason: 'Independent validation passed: PE32 Intel i386 executable produced, all packages compile for windows/386, zero source leaks.'
+              application:
+                target-stage: done
+                state: pending
 ---
 
 ## Problem
