@@ -1,11 +1,11 @@
 ---
 id: nvtfxc3an0mphhf4q2e9zkse
 title: Win32 cross-compilation (GOARCH=386)
-status: validation
+status: done
 source: commission seed
 started: 2026-08-12T16:21:00Z
-completed:
-verdict:
+completed: 2026-08-13T01:10:49Z
+verdict: PASSED
 score: 0.9
 worktree: .worktrees/spacedock-ensign-win32-cross-compilation
 issue:
@@ -73,7 +73,8 @@ gates:
                 reason: 'Independent validation passed: PE32 Intel i386 executable produced, all packages compile for windows/386, zero source leaks.'
               application:
                 target-stage: done
-                state: pending
+                state: consumed
+archived: 2026-08-13T01:10:49Z
 ---
 
 ## Problem
